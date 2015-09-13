@@ -1,0 +1,21 @@
+---
+pkg_requirements:
+  - git
+
+  - libboost-all-dev
+  - libprotobuf-dev
+  - libleveldb-dev
+  - libsnappy-dev
+  - libopencv-dev
+  - libhdf5-serial-dev
+  - protobuf-compiler
+  - libatlas-base-dev
+  - libgflags-dev
+  - libgoogle-glog-dev
+  - liblmdb-dev
+
+  - python-pip
+  - python-numpy
+  - python-scipy
+  - python-dev
+  - cython
