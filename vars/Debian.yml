@@ -19,3 +19,6 @@ pkg_requirements:
   - python-scipy
   - python-dev
   - cython
+
+  - gcc-4.6
+  - g++-4.6
