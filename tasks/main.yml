@@ -6,3 +6,22 @@
   apt: name={{ item }} state=present update_cache=yes
   with_items: pkg_requirements
   when: ansible_os_family == 'Debian'
+
+- name: Check CUDA repository package installed
+  command: dpkg-query -W cuda-repo-ubuntu1404
+  register: cuda_repo_check_deb
+  changed_when: cuda_repo_check_deb.rc == 1
+  ignore_errors: yes
+
+- name: Download CUDA repository package
+  get_url:
+    url="{{ cuda_repo_pkg_url }}"
+    dest="{{ pkg_tmpdir }}/{{ cuda_repo_pkg_name }}"
+  when: cuda_repo_check_deb.rc == 1
+
+- name: Install CUDA repository package
+  apt: deb="{{ pkg_tmpdir }}/{{ cuda_repo_pkg_name }}"
+  when: cuda_repo_check_deb.rc == 1
+
+- name: Install CUDA
+  apt: name=cuda state=present update_cache=yes

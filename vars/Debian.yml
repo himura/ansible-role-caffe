@@ -1,4 +1,6 @@
 ---
+pkg_tmpdir: /tmp
+
 pkg_requirements:
   - git
 
@@ -18,7 +20,12 @@ pkg_requirements:
   - python-numpy
   - python-scipy
   - python-dev
+  - python-protobuf
+  - python-opencv
   - cython
 
   - gcc-4.6
   - g++-4.6
+
+cuda_repo_pkg_url: http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.5-18_amd64.deb
+cuda_repo_pkg_name: cuda-repo-ubuntu1404_7.5-18_amd64.deb
