@@ -1,4 +1,7 @@
 ---
+nvidia_driver_version: 346
+cuda_version: 7.0
+
 pkg_tmpdir: /tmp
 
 pkg_requirements:

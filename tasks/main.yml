@@ -27,5 +27,12 @@
   apt: deb="{{ pkg_tmpdir }}/{{ cuda_repo_pkg_name }}"
   when: cuda_repo_check_deb.rc == 1
 
-- name: Install CUDA
-  apt: name=cuda state=present update_cache=yes install_recommends=no
+- name: Install nvidia driver and CUDA
+  apt: name={{ item }} state=present update_cache=yes install_recommends=no
+  with_items:
+    - cuda={{ cuda_version }}*
+    - cuda-drivers={{ nvidia_driver_version }}.*
+    - nvidia-{{ nvidia_driver_version }}
+    - nvidia-{{ nvidia_driver_version }}-dev
+    - nvidia-{{ nvidia_driver_version }}-uvm
+    - nvidia-settings={{ nvidia_driver_version }}.*
