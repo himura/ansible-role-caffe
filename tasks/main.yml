@@ -24,4 +24,4 @@
   when: cuda_repo_check_deb.rc == 1
 
 - name: Install CUDA
-  apt: name=cuda state=present update_cache=yes
+  apt: name=cuda state=present update_cache=yes install_recommends=no
