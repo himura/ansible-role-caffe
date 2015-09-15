@@ -36,3 +36,6 @@ cuda_repo_pkg_name: cuda-repo-ubuntu1404_7.5-18_amd64.deb
 linux_kernel_pkgs:
   - linux-headers-3.13.0-63-generic
   - linux-image-3.13.0-63-generic
+
+caffe_custom_cxx: g++-4.6
+caffe_cuda_dir: /usr/local/cuda-{{ cuda_version }}

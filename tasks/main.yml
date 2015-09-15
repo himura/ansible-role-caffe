@@ -36,3 +36,37 @@
     - nvidia-{{ nvidia_driver_version }}-dev
     - nvidia-{{ nvidia_driver_version }}-uvm
     - nvidia-settings={{ nvidia_driver_version }}.*
+
+- name: Clone Caffe repository
+  git: repo=https://github.com/BVLC/caffe.git
+       dest={{ caffe_src_dir }}
+       version={{ caffe_version }}
+  register: clone_caffe_repository
+
+- name: Clean up Caffe clone directory
+  command: git clean -x -f chdir={{ caffe_src_dir }}
+  when: clone_caffe_repository|changed
+
+- name: Generate Makefile.config
+  template:
+    src=Makefile.config.j2
+    dest={{ caffe_src_dir }}/Makefile.config
+  when: clone_caffe_repository|changed
+
+- name: Build Caffe
+  command: >-
+    make -j8 all
+    chdir={{ caffe_src_dir }}
+  when: clone_caffe_repository|changed
+
+- name: Distribute Caffe
+  command: >-
+    make -j8 distribute
+    chdir={{ caffe_src_dir }}
+  when: clone_caffe_repository|changed
+
+- name: Create symbolic link
+  file:
+    src={{ caffe_install_dir }}-{{ clone_caffe_repository.after }}
+    dest={{ caffe_install_dir }}
+    state=link

@@ -1,1 +1,4 @@
 ---
+caffe_version: master
+caffe_install_dir: /opt/caffe
+caffe_src_dir: /opt/src/caffe
