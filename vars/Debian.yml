@@ -29,3 +29,7 @@ pkg_requirements:
 
 cuda_repo_pkg_url: http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.5-18_amd64.deb
 cuda_repo_pkg_name: cuda-repo-ubuntu1404_7.5-18_amd64.deb
+
+linux_kernel_pkgs:
+  - linux-headers-3.13.0-63-generic
+  - linux-image-3.13.0-63-generic

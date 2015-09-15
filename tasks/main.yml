@@ -7,6 +7,10 @@
   with_items: pkg_requirements
   when: ansible_os_family == 'Debian'
 
+- name: Install linux kernel
+  apt: name={{ item }} state=present
+  with_items: linux_kernel_pkgs
+
 - name: Check CUDA repository package installed
   command: dpkg-query -W cuda-repo-ubuntu1404
   register: cuda_repo_check_deb
